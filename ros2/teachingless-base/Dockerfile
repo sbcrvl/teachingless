@@ -6,12 +6,13 @@ FROM osrf/ros:humble-desktop-full-jammy
 
 RUN sudo apt update
 RUN sudo apt install -y \
-    tmux
+    tmux \
+    xvfb
 
 ################################################################################
 
-WORKDIR /ros2_ws/src
+WORKDIR /root/ros2_ws/src
 RUN git clone https://github.com/ros/ros_tutorials.git -b humble
-WORKDIR /ros2_ws
+WORKDIR /root/ros2_ws
 RUN rosdep install -i --from-path src --rosdistro humble -y
-# RUN colcon build
+WORKDIR /root
